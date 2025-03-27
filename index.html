@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SeedPray - Email Verification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 90%;
+            width: 400px;
+        }
+        .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            color: #34C759;
+        }
+        h1 {
+            color: #333;
+            margin: 0 0 20px 0;
+            font-size: 24px;
+        }
+        p {
+            color: #666;
+            margin: 0 0 30px 0;
+            line-height: 1.5;
+        }
+        .button {
+            background-color: #007AFF;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: background-color 0.2s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .loading {
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1C1C1E;
+            }
+            .container {
+                background-color: #2C2C2E;
+            }
+            h1 {
+                color: #FFFFFF;
+            }
+            p {
+                color: #EBEBF5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">✓</div>
+        <h1>Email Verified!</h1>
+        <p>Your email has been successfully verified. You will be redirected to the SeedPray app automatically.</p>
+        <a href="seedpray://auth/verify" class="button">Return to App</a>
+        <p class="loading">Redirecting...</p>
+    </div>
+    <script>
+        // Get the token from URL if present
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        const type = urlParams.get('type');
+        
+        // Construct the redirect URL with parameters if they exist
+        let redirectUrl = 'seedpray://auth/verify';
+        if (token && type) {
+            redirectUrl += `?token=${token}&type=${type}`;
+        }
+        
+        // Redirect after a short delay
+        setTimeout(function() {
+            window.location.href = redirectUrl;
+        }, 1500);
+    </script>
+</body>
+</html> 
