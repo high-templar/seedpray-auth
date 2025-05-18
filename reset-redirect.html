@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting to App...</title>
+  <script>
+    // Parse token and type from URL
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+    const type = params.get('type');
+    if (token && type === 'recovery') {
+      // Redirect to your app's custom URL scheme
+      window.location.href = `seedpray://reset-password?token=${encodeURIComponent(token)}&type=${encodeURIComponent(type)}`;
+    } else {
+      document.body.innerHTML = "Invalid or missing token.";
+    }
+  </script>
+</head>
+<body>
+  Redirecting to app...
+</body>
+</html>
